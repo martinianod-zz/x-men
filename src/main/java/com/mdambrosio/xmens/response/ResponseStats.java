@@ -1,16 +1,12 @@
-/**
- * 
- */
-package com.mdambrosio.xmens.dto;
+package com.mdambrosio.xmens.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mdambrosio.xmens.dto.StatsDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  * @author mdambrosio
@@ -20,9 +16,9 @@ import lombok.ToString;
 @AllArgsConstructor
 @Data
 @Builder
-public class DnaListDTO {
-
-	@JsonProperty("dna")
-	private String[] dna;
+public class ResponseStats {
+	
+		@JsonProperty("ADN")
+		private StatsDTO stats_dto;
 
 }

@@ -8,9 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  * @author mdambrosio
@@ -20,9 +18,15 @@ import lombok.ToString;
 @AllArgsConstructor
 @Data
 @Builder
-public class DnaListDTO {
+public class StatsDTO {
 
-	@JsonProperty("dna")
-	private String[] dna;
+	@JsonProperty("count_mutant_dna")
+	private Integer count_mutant_dna;
+
+	@JsonProperty("count_human_dna")
+	private Integer count_human_dna;
+
+	@JsonProperty("ratio")
+	private Double ratio;
 
 }

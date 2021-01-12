@@ -52,12 +52,47 @@ public class DnaService implements IDna {
 
 		ArrayList<ArrayList<Character>> graph = new ArrayList<>(cantidadDeCadenas);
 
+		int cantSecuenciasEncontradas = 0;
+
 		for (int i = 0; i < cantidadDeCadenas; i++) {
-			String cadena = dna.getDna()[i];
+
+			String cadenaActual = dna.getDna()[i];
+
+			char characterActual = cadenaActual.charAt(i);
 
 			ArrayList<Character> cadenaCaracteres = new ArrayList<Character>();
-			for (int j = 0; j < cadena.length(); j++) {
-				cadenaCaracteres.add(cadena.charAt(j));
+
+			// Los ultimos 3 caracteres de cada fila no pueden conformar una secuencia
+			// esperada.
+			int lengthMaximo = cadenaActual.length();
+
+			for (int j = i + 1; j < lengthMaximo; j++) {
+
+				if (i < lengthMaximo - 3) {
+
+					if (j < lengthMaximo) {
+
+						// Busco en las tres direcciones
+
+					} else {
+						// Solo busco de forma vertical
+						int cantHorizontalesEncontradas = this.getSoloVertical();
+					}
+				} else {
+					// Solo busco de forma horizontal
+					int cantHorizontalesEncontradas = this.getSoloHorizontal(cadenaActual.substring(i, i + 4));
+
+					cantSecuenciasEncontradas += cantHorizontalesEncontradas;
+
+				}
+
+				char characterSiguiente = cadenaActual.charAt(j);
+
+				String cadenaSiguiente = dna.getDna()[j];
+
+				char characterVertical = cadenaSiguiente.charAt(i);
+				char characterOblicuo = cadenaSiguiente.charAt(j);
+
 			}
 
 			graph.add(cadenaCaracteres);
@@ -67,6 +102,22 @@ public class DnaService implements IDna {
 		System.out.println(graph);
 
 		return false;
+	}
+
+	private int getSoloHorizontal(String cadena) {
+		int n = cadena.length();
+		for (int i = 0; i < n - 3; i++)
+			if (cadena.charAt(i) != cadena.charAt(i + 1))
+
+				return false;
+
+		return true;
+		return 0;
+	}
+
+	private int getSoloVertical() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
