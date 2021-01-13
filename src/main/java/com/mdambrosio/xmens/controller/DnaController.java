@@ -19,6 +19,7 @@ import com.mdambrosio.xmens.exceptions.ForbiddenException;
 import com.mdambrosio.xmens.service.DnaService;
 import com.mdambrosio.xmens.service.IDna;
 import com.mdambrosio.xmens.validation.CharacterConstraint;
+import com.mdambrosio.xmens.validation.NxNMatrixConstraint;
 
 /**
  * @author mdambrosio
@@ -44,7 +45,8 @@ public class DnaController {
 	 * @throws ForbiddenException
 	 */
 	@PostMapping()
-	public ResponseEntity<?> isMutant(@RequestBody @CharacterConstraint DnaListDTO dna) throws ForbiddenException {
+	public ResponseEntity<?> isMutant(@RequestBody @CharacterConstraint @NxNMatrixConstraint DnaListDTO dna)
+			throws ForbiddenException {
 
 		if (!((DnaService) iDna).isMutant(dna))
 			throw new ForbiddenException();

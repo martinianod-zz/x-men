@@ -34,90 +34,85 @@ public class DnaService implements IDna {
 		if (dnaEntity == null) {
 
 			Dna newDna = new Dna();
+
 			newDna.setDna(cadenaDna);
+			newDna.setIsMutant(this.checkDnaIsMutant(cadenaDna, list.size()));
 
-			newDna.setIsMutant(true);
-
-			dnaRepository.save(newDna);
+			return dnaRepository.save(newDna).getIsMutant();
 
 		} else {
 			return dnaEntity.getIsMutant();
 		}
+	}
 
-		int cantidaDeCaracteresDeLaCadena = dna.getDna()[0].length();
-
-		int cantidadDeCadenas = dna.getDna().length;
-
-		String[] arrayOfDna = dna.getDna();
-
-		ArrayList<ArrayList<Character>> graph = new ArrayList<>(cantidadDeCadenas);
+	private Boolean checkDnaIsMutant(String cadenaDna, int size) {
 
 		int cantSecuenciasEncontradas = 0;
+		int maxHorizontalesContinuas = 0;
+		boolean compararHorizontal = false;
+		boolean compararVertical = false;
 
-		for (int i = 0; i < cantidadDeCadenas; i++) {
+		for (int i = 0; i < cadenaDna.length(); i++) {
 
-			String cadenaActual = dna.getDna()[i];
+			System.out.println("[" + i + "] " + "comparo: " + cadenaDna.charAt(i));
 
-			char characterActual = cadenaActual.charAt(i);
+			if (i % size == 0) {
+				maxHorizontalesContinuas = size - 3;
+				compararHorizontal = true;
+			}
 
-			ArrayList<Character> cadenaCaracteres = new ArrayList<Character>();
+			if (i / size < 3) {
+				compararVertical = true;
+			} else {
+				compararVertical = false;
+			}
 
-			// Los ultimos 3 caracteres de cada fila no pueden conformar una secuencia
-			// esperada.
-			int lengthMaximo = cadenaActual.length();
+			if (compararHorizontal) {
 
-			for (int j = i + 1; j < lengthMaximo; j++) {
-
-				if (i < lengthMaximo - 3) {
-
-					if (j < lengthMaximo) {
-
-						// Busco en las tres direcciones
-
-					} else {
-						// Solo busco de forma vertical
-						int cantHorizontalesEncontradas = this.getSoloVertical();
-					}
-				} else {
-					// Solo busco de forma horizontal
-					int cantHorizontalesEncontradas = this.getSoloHorizontal(cadenaActual.substring(i, i + 4));
-
-					cantSecuenciasEncontradas += cantHorizontalesEncontradas;
-
-				}
-
-				char characterSiguiente = cadenaActual.charAt(j);
-
-				String cadenaSiguiente = dna.getDna()[j];
-
-				char characterVertical = cadenaSiguiente.charAt(i);
-				char characterOblicuo = cadenaSiguiente.charAt(j);
+				if (this.esSecuenciaMutant(cadenaDna, i, 1))
+					cantSecuenciasEncontradas++;
 
 			}
 
-			graph.add(cadenaCaracteres);
-			System.out.println(cadenaCaracteres);
-		}
+			if (compararVertical) {
 
-		System.out.println(graph);
+				if (this.esSecuenciaMutant(cadenaDna, i, size))
+					cantSecuenciasEncontradas++;
+
+			}
+
+			if (compararHorizontal && compararVertical) {
+
+				if (this.esSecuenciaMutant(cadenaDna, i, size + 1))
+					cantSecuenciasEncontradas++;
+
+			}
+
+			if (cantSecuenciasEncontradas > 1)
+				return true;
+
+			maxHorizontalesContinuas--;
+			if (maxHorizontalesContinuas == 0) {
+				compararHorizontal = false;
+			}
+
+		}
 
 		return false;
 	}
 
-	private int getSoloHorizontal(String cadena) {
-		int n = cadena.length();
-		for (int i = 0; i < n - 3; i++)
-			if (cadena.charAt(i) != cadena.charAt(i + 1))
+	private boolean esSecuenciaMutant(String cadenaDna, int i, int size) {
+		for (int j = 0; j < 3; j++) {
 
+//			System.out.println("[" + i + "] " + "comparo: " + cadenaDna.charAt(i) + " con: "
+//					+ cadenaDna.charAt((size * (j + 1)) + i) + "[" + ((size * (j + 1)) + i) + "]");
+
+			if (cadenaDna.charAt(i) != cadenaDna.charAt((size * (j + 1)) + i)) {
 				return false;
+			}
+
+		}
 
 		return true;
-		return 0;
 	}
-
-	private int getSoloVertical() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 }
