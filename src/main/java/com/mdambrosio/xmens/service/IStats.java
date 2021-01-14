@@ -10,7 +10,7 @@ package com.mdambrosio.xmens.service;
 public interface IStats {
 
 	public Integer getCountMutantDna();
-	
+
 	public Integer getCountHumanDna();
 
 }

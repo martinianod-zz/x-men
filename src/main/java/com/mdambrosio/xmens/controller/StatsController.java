@@ -40,10 +40,6 @@ public class StatsController {
 
 		StatsDTO stats = iConsultaStats.getStats();
 
-//		ResponseStats responseStats = new ResponseStats();
-//		responseStats.setStats_dto(stats);
-//			throw new ForbiddenException();
-
 		return ResponseEntity.ok(stats);
 
 	}

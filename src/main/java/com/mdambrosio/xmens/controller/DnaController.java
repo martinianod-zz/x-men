@@ -33,7 +33,7 @@ public class DnaController {
 	private static final Logger logger = LogManager.getLogger(DnaController.class);
 
 	@Autowired
-	IDna iDna;
+	private IDna iDna;
 
 	/**
 	 * 
@@ -48,8 +48,7 @@ public class DnaController {
 	public ResponseEntity<?> isMutant(@RequestBody @CharacterConstraint @NxNMatrixConstraint DnaListDTO dna)
 			throws ForbiddenException {
 
-		if (!((DnaService) iDna).isMutant(dna))
-			throw new ForbiddenException();
+		((DnaService) iDna).isMutant(dna);
 
 		return new ResponseEntity<Object>(HttpStatus.OK);
 

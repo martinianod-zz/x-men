@@ -13,12 +13,28 @@ import com.mdambrosio.xmens.service.IStats;
  */
 @Repository
 public interface DnaRepository extends CrudRepository<Dna, Long> {
-
+	
+	/**
+	 * 
+	 * @param cadenaDna
+	 * @return
+	 */
 	Dna findByDna(String cadenaDna);
 
-	@Query(value = "SELECT SUM(CASE WHEN NOT is_mutant THEN 1 ELSE 0 END) as countMutantDna , \r\n"
-			+ "		SUM(CASE WHEN is_mutant THEN 1 ELSE 0 END) as countHumanDna \r\n"
+	/**
+	 * 
+	 * @return
+	 */
+	@Query(value = "SELECT SUM(CASE WHEN is_mutant THEN 1 ELSE 0 END) as countMutantDna , \r\n"
+			+ "		SUM(CASE WHEN NOT is_mutant THEN 1 ELSE 0 END) as countHumanDna \r\n"
 			+ "FROM dna", nativeQuery = true)
 	public IStats getStats();
+
+	/**
+	 * 
+	 * @param string
+	 * @return
+	 */
+	boolean existsByDna(String string);
 
 }
