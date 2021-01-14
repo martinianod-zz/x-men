@@ -3,8 +3,6 @@
  */
 package com.mdambrosio.xmens.service;
 
-import java.text.DecimalFormat;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +21,6 @@ public class StatsService implements IConsultaStats {
 
 	@Autowired
 	private DnaRepository dnaRepository;
-
-//	@Autowired
-//	private ModelMapper modelMapper;
 
 	private static final Logger logger = LogManager.getLogger(StatsService.class);
 
