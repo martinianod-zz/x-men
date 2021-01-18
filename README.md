@@ -1,6 +1,6 @@
 # x-men
 
-## Como consumir X-Mens Microservices
+## Cómo consumir X-Mens Microservices
 
 ## Getting Started
 
@@ -34,5 +34,5 @@
  #### /Stats Method
 
 - 01 Abrir Postman o copiar url en el navegador para consumir este servicio
-- 02 En caso de consumir el servicio con algun api client: Generar un GET http request y pegar la url: http://ec2-3-135-188-103.us-east-2.compute.amazonaws.com/v1/api/stats/
+- 02 En caso de consumir el servicio con algún api client: Generar un GET http request y pegar la url: http://ec2-3-135-188-103.us-east-2.compute.amazonaws.com/v1/api/stats/
 
