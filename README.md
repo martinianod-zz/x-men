@@ -18,7 +18,7 @@
 - 02 Copiar la url
 - 02 Generar el siguiente POST http request:
 
-[![Image](file:///C:/Users/marti/OneDrive/Pictures/AWS-capture/mutant-post-request.png "Mutant POST HTTP Request")]
+[![alt text](file:///C:/Users/marti/OneDrive/Pictures/AWS-capture/mutant-post-request.png "Mutant POST HTTP Request")]
 
 - 03 Ejemplo cadena mutante:
   {
