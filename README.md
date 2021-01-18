@@ -16,17 +16,15 @@
 
 - 01 Abrir Postman 
 - 02 Copiar la url
-- 02 Generar el siguiente POST http request:
+- 03 Generar un POST http request y pegar la url: http://ec2-3-135-188-103.us-east-2.compute.amazonaws.com/v1/api/mutant/
 
-[![alt text](file:///C:/Users/marti/OneDrive/Pictures/AWS-capture/mutant-post-request.png "Mutant POST HTTP Request")]
-
-- 03 Ejemplo cadena mutante:
+- 04 Agregar la cadena de dna en formato json al body del request:
   {
     "dna": [
         "AAAAGA", "AAGGGG", "TTCTGT", "AAACCG", "CTCCTA", "TAACTG"
     ]
   }
-- 04 Ejemplo cadena no mutante:
+- 05 Ejemplo cadena no mutante:
   {
     "dna": [
         "AACAGA", "AAGGGG", "TTCTGT", "AGACCG", "CTCCTA", "TAACTG"
@@ -36,6 +34,5 @@
   #### /Stats Method
 
 - 01 Abrir Postman o copiar url en el navegador para consumir este servicio
-- 02 Generar el siguiente GET http request:
+- 02 En caso de consumir el servicio con algun api client: Generar un GET http request y pegar la url: http://ec2-3-135-188-103.us-east-2.compute.amazonaws.com/v1/api/stats/
 
-[![Image](file:///C:/Users/marti/OneDrive/Pictures/AWS-capture/mutant-post-request.png "Stats GET HTTP Request")]
